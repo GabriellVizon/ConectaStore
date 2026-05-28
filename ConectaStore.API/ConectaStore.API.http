@@ -1,0 +1,6 @@
+@ConectaStore.API_HostAddress = http://localhost:5278
+
+GET {{ConectaStore.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
