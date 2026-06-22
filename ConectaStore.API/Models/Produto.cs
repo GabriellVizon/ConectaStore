@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ConectaStore.API.Models;
 
@@ -26,6 +27,7 @@ namespace ConectaStore.API.Models;
 
         [Required]
         [Column(TypeName = "numeric(10,2)")]
+        [JsonIgnore]
         public decimal ValorCusto { get; set; } = 0;
 
         [Required]
@@ -33,6 +35,7 @@ namespace ConectaStore.API.Models;
         public decimal ValorVenda { get; set; } = 0;
         
         [NotMapped]
+        [JsonIgnore]
         public decimal MargemLucro => ValorVenda - ValorCusto;
 
         public bool Destaque { get; set; } = false;

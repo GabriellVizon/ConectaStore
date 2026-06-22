@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Carrinho | Loja do Cooperado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #0b1326;
+        color: #dae2fd;
+        -webkit-font-smoothing: antialiased;
+    }
+    .glass-card {
+        background: rgba(23, 31, 51, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    @keyframes slide-up {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-slide-up { animation: slide-up 0.3s ease-out; }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "surface-tint": "#7bd0ff",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#0b1326",
+                    "tertiary-fixed": "#c9e6ff",
+                    "tertiary": "#98d3ff",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#171f33",
+                    "outline-variant": "#3e484f",
+                    "on-error": "#690005",
+                    "outline": "#87929a",
+                    "on-primary-container": "#004965",
+                    "secondary-container": "#3e495d",
+                    "on-primary-fixed-variant": "#004c69",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "on-tertiary-container": "#00486a",
+                    "tertiary-container": "#43bbff",
+                    "surface-container-highest": "#2d3449",
+                    "inverse-surface": "#dae2fd",
+                    "inverse-primary": "#00668a",
+                    "on-primary-fixed": "#001e2c",
+                    "error-container": "#93000a",
+                    "on-secondary": "#263143",
+                    "inverse-on-surface": "#283044",
+                    "surface-container-lowest": "#060e20",
+                    "secondary-fixed": "#d8e3fb",
+                    "surface-container-low": "#131b2e",
+                    "on-tertiary-fixed": "#001e2f",
+                    "surface-container-high": "#222a3d",
+                    "on-surface": "#dae2fd",
+                    "on-surface-variant": "#bdc8d1",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "surface-variant": "#2d3449",
+                    "primary-fixed": "#c4e7ff",
+                    "on-background": "#dae2fd",
+                    "primary": "#8ed5ff",
+                    "primary-container": "#38bdf8",
+                    "on-primary": "#00354a",
+                    "on-tertiary-fixed-variant": "#004c6e",
+                    "background": "#0b1326",
+                    "surface": "#0b1326",
+                    "surface-bright": "#31394d",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-tertiary": "#00344d",
+                    "secondary": "#bcc7de",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-secondary-container": "#aeb9d0",
+                    "tertiary-fixed-dim": "#89ceff"
+                },
+                borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                spacing: { xs: "0.5rem", md: "1.5rem", xl: "3rem", base: "4px", lg: "2rem", sm: "1rem" },
+                fontFamily: {
+                    "body-lg": ["Poppins"], "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Geist"], "label-md": ["Geist"],
+                    "body-md": ["Poppins"], "headline-md": ["Plus Jakarta Sans"]
+                },
+                fontSize: {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/30">
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(56,189,248,0.1)]">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-[1440px] mx-auto">
+<a href="index.html" class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">Loja do Cooperado</a>
+<div class="hidden md:flex items-center space-x-lg font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html">Início</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="produto.html">Produtos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="produto.html?filter=destaques">Ofertas</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="carrinho.html">Carrinho</a>
+</div>
+<div class="flex items-center space-x-md">
+<a href="carrinho.html" class="relative material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
+shopping_cart
+<span class="badge-carrinho absolute -top-2 -right-2 bg-error text-on-error text-[10px] font-bold w-5 h-5 rounded-full items-center justify-center" style="display:none">0</span>
+</a>
+<a href="admin.html" class="px-md py-xs bg-primary-container text-on-primary font-bold rounded-lg hover:scale-105 transition-transform active:scale-95">Admin</a>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-xl px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+    <h1 class="font-headline-lg text-[42px] leading-[1.1] mb-xl text-on-surface font-extrabold tracking-tight">Seu Carrinho</h1>
+    <div id="carrinho-conteudo" class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+        <div class="lg:col-span-8 space-y-md" id="itens-carrinho"></div>
+        <div class="lg:col-span-4" id="resumo-carrinho"></div>
+    </div>
+</main>
+<footer class="w-full bg-surface-container-lowest border-t border-white/5 mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-xl px-margin-desktop max-w-[1440px] mx-auto">
+<div class="space-y-md">
+<div class="font-headline-sm text-headline-sm text-primary font-bold">Loja do Cooperado</div>
+<p class="text-on-surface-variant font-body-md">Excelência em tecnologia e serviços exclusivos para nossa rede de cooperados.</p>
+</div>
+<div class="space-y-sm">
+<h4 class="text-on-surface font-bold uppercase tracking-widest text-xs">Menu</h4>
+<ul class="space-y-xs text-on-surface-variant font-body-md">
+<li><a class="hover:text-primary transition-all" href="produto.html">Produtos</a></li>
+<li><a class="hover:text-primary transition-all" href="produto.html?filter=destaques">Ofertas</a></li>
+<li><a class="hover:text-primary transition-all" href="index.html">Início</a></li>
+</ul>
+</div>
+<div class="space-y-sm">
+<h4 class="text-on-surface font-bold uppercase tracking-widest text-xs">Suporte</h4>
+<ul class="space-y-xs text-on-surface-variant font-body-md">
+<li><a class="hover:text-primary transition-all" href="#">Ajuda</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Contato</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Termos de Uso</a></li>
+<li><a class="hover:text-primary transition-all" href="#">Privacidade</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/5 py-md px-margin-desktop max-w-[1440px] mx-auto flex justify-between items-center text-on-surface-variant text-sm">
+<span>&copy; 2024 Loja do Cooperado. Tecnologia e Cooperação.</span>
+</div>
+</footer>
+<script src="JS/api.js"></script>
+<script src="JS/carrinho.js"></script>
+<script>
+function renderizarCarrinho() {
+    const carrinho = getCarrinho();
+    const container = document.getElementById("itens-carrinho");
+    const resumo = document.getElementById("resumo-carrinho");
+    if (!carrinho.length) {
+        container.innerHTML = `
+            <div class="glass-card rounded-xl p-xl text-center">
+                <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-md">shopping_cart</span>
+                <h2 class="text-headline-md text-on-surface mb-sm">Carrinho vazio</h2>
+                <p class="text-on-surface-variant mb-lg">Nenhum produto adicionado ainda.</p>
+                <a href="produto.html" class="inline-block bg-primary text-on-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform">Explorar Produtos</a>
+            </div>
+        `;
+        resumo.innerHTML = "";
+        return;
+    }
+    container.innerHTML = carrinho.map(item => `
+        <div class="glass-card rounded-xl p-lg flex items-center gap-lg">
+            <div class="w-20 h-20 bg-surface-container-high rounded-lg overflow-hidden flex-shrink-0">
+                <img class="w-full h-full object-contain p-2" src="${item.foto || ''}" alt="${item.nome}" loading="lazy">
+            </div>
+            <div class="flex-1 min-w-0">
+                <h3 class="font-body-md font-semibold text-on-surface truncate">${item.nome}</h3>
+                <p class="text-primary font-bold text-lg">R$ ${Number(item.preco).toFixed(2).replace('.', ',')}</p>
+            </div>
+            <div class="flex items-center gap-sm">
+                <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all" onclick="atualizarQuantidade(${item.id}, -1)">
+                    <span class="material-symbols-outlined text-sm">remove</span>
+                </button>
+                <span class="w-8 text-center font-bold">${item.quantidade}</span>
+                <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all" onclick="atualizarQuantidade(${item.id}, 1)">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                </button>
+            </div>
+            <div class="text-right flex-shrink-0">
+                <div class="text-on-surface font-bold">R$ ${Number(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</div>
+                <button class="text-error/70 hover:text-error text-sm mt-1 transition-all" onclick="removerDoCarrinho(${item.id})">Remover</button>
+            </div>
+        </div>
+    `).join("");
+    const total = getTotalCarrinho();
+    const qtd = getContagemCarrinho();
+    resumo.innerHTML = `
+        <div class="glass-card rounded-xl p-lg sticky top-28">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-lg">Resumo</h3>
+            <div class="space-y-sm mb-lg">
+                <div class="flex justify-between text-on-surface-variant">
+                    <span>Itens</span>
+                    <span>${qtd}</span>
+                </div>
+                <div class="flex justify-between text-on-surface-variant">
+                    <span>Frete</span>
+                    <span class="text-green-400">Grátis</span>
+                </div>
+                <div class="border-t border-white/10 pt-sm flex justify-between text-lg font-bold">
+                    <span class="text-on-surface">Total</span>
+                    <span class="text-primary">R$ ${total.toFixed(2).replace('.', ',')}</span>
+                </div>
+            </div>
+            <div class="space-y-sm">
+                <input id="input-cliente" class="w-full bg-surface-container border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary" placeholder="Seu nome (para finalizar)" />
+                <button class="w-full py-3 bg-gradient-to-r from-primary-container to-[#004c69] text-on-primary font-bold rounded-xl shadow-lg hover:shadow-primary/20 transition-all transform hover:-translate-y-1 active:scale-[0.98]" onclick="finalizarCompra()">
+                    FINALIZAR COMPRA
+                </button>
+                <button class="w-full py-2 text-on-surface-variant hover:text-error text-sm transition-all" onclick="if(confirm('Limpar carrinho?')) limparCarrinho()">
+                    Limpar Carrinho
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+async function finalizarCompra() {
+    const cliente = document.getElementById("input-cliente")?.value.trim();
+    if (!cliente) {
+        mostrarToast("Digite seu nome para finalizar a compra.", "warning");
+        return;
+    }
+    const carrinho = getCarrinho();
+    if (!carrinho.length) {
+        mostrarToast("Carrinho vazio.", "error");
+        return;
+    }
+    const payload = {
+        cliente: cliente,
+        itens: carrinho.map(item => ({
+            produtoId: item.id,
+            quantidade: item.quantidade
+        }))
+    };
+    try {
+        const response = await fetch(`${API}/vendas`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            const msg = data.erro || "Erro ao finalizar compra.";
+            const detalhes = data.detalhes ? "\n" + data.detalhes.join("\n") : "";
+            mostrarToast(msg + detalhes, "error");
+            return;
+        }
+        limparCarrinho();
+        document.getElementById("carrinho-conteudo").innerHTML = `
+            <div class="lg:col-span-12 glass-card rounded-xl p-xl text-center">
+                <span class="material-symbols-outlined text-6xl text-green-400 mb-md">check_circle</span>
+                <h2 class="text-headline-md text-on-surface mb-sm">Compra Finalizada!</h2>
+                <p class="text-on-surface-variant mb-lg">Obrigado, ${cliente}! Seu pedido foi registrado com sucesso.</p>
+                <a href="produto.html" class="inline-block bg-primary text-on-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform">Continuar Comprando</a>
+            </div>
+        `;
+    } catch {
+        mostrarToast("API indisponível. Verifique se o servidor está rodando.", "error");
+    }
+}
+
+renderizarCarrinho();
+</script>
+</body>
+</html>

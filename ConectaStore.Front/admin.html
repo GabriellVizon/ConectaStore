@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin | Loja do Cooperado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Geist:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Poppins', sans-serif; background-color: #0b1326; color: #dae2fd; -webkit-font-smoothing: antialiased; }
+    .glass-card { background: rgba(23, 31, 51, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .modal-overlay { background: rgba(0,0,0,0.7); }
+    input, select, textarea { color: #dae2fd; }
+    input::placeholder, textarea::placeholder { color: #87929a; }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "surface-tint": "#7bd0ff", "error": "#ffb4ab", "surface-dim": "#0b1326",
+                    "tertiary-fixed": "#c9e6ff", "tertiary": "#98d3ff",
+                    "on-error-container": "#ffdad6", "surface-container": "#171f33",
+                    "outline-variant": "#3e484f", "on-error": "#690005", "outline": "#87929a",
+                    "on-primary-container": "#004965", "secondary-container": "#3e495d",
+                    "on-primary-fixed-variant": "#004c69", "primary-fixed-dim": "#7bd0ff",
+                    "on-tertiary-container": "#00486a", "tertiary-container": "#43bbff",
+                    "surface-container-highest": "#2d3449", "inverse-surface": "#dae2fd",
+                    "inverse-primary": "#00668a", "on-primary-fixed": "#001e2c",
+                    "error-container": "#93000a", "on-secondary": "#263143",
+                    "inverse-on-surface": "#283044", "surface-container-lowest": "#060e20",
+                    "secondary-fixed": "#d8e3fb", "surface-container-low": "#131b2e",
+                    "on-tertiary-fixed": "#001e2f", "surface-container-high": "#222a3d",
+                    "on-surface": "#dae2fd", "on-surface-variant": "#bdc8d1",
+                    "on-secondary-fixed-variant": "#3c475a", "surface-variant": "#2d3449",
+                    "primary-fixed": "#c4e7ff", "on-background": "#dae2fd", "primary": "#8ed5ff",
+                    "primary-container": "#38bdf8", "on-primary": "#00354a",
+                    "on-tertiary-fixed-variant": "#004c6e", "background": "#0b1326",
+                    "surface": "#0b1326", "surface-bright": "#31394d",
+                    "on-secondary-fixed": "#111c2d", "on-tertiary": "#00344d",
+                    "secondary": "#bcc7de", "secondary-fixed-dim": "#bcc7de",
+                    "on-secondary-container": "#aeb9d0", "tertiary-fixed-dim": "#89ceff"
+                },
+                borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+                spacing: { xs: "0.5rem", md: "1.5rem", xl: "3rem", base: "4px", lg: "2rem", sm: "1rem" },
+                fontFamily: { "headline-lg": ["Plus Jakarta Sans"], "label-md": ["Geist"], "body-md": ["Poppins"], "headline-md": ["Plus Jakarta Sans"] },
+                fontSize: {
+                    "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                }
+            }
+        }
+    }
+</script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/30">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-surface-container-low border-r border-white/5 flex flex-col flex-shrink-0">
+        <div class="h-20 flex items-center px-lg border-b border-white/5">
+            <a href="index.html" class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">Loja do Cooperado</a>
+        </div>
+        <nav class="nav-admin flex-1 p-md space-y-1">
+            <a data-secao="dashboard" class="flex items-center gap-3 p-3 rounded-xl bg-primary-container/20 text-primary border-r-4 border-primary text-label-md font-label-md transition-all cursor-pointer" onclick="abrirSecao('dashboard')">
+                <span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+            <a data-secao="categorias" class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 text-label-md font-label-md transition-all cursor-pointer" onclick="abrirSecao('categorias')">
+                <span class="material-symbols-outlined">category</span> Categorias
+            </a>
+            <a data-secao="estoque" class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 text-label-md font-label-md transition-all cursor-pointer" onclick="abrirSecao('estoque')">
+                <span class="material-symbols-outlined">inventory_2</span> Estoque
+            </a>
+            <a data-secao="vendas" class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-white/5 text-label-md font-label-md transition-all cursor-pointer" onclick="abrirSecao('vendas')">
+                <span class="material-symbols-outlined">payments</span> Vendas
+            </a>
+        </nav>
+        <div class="p-md border-t border-white/5">
+            <a href="index.html" class="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:text-error text-label-md font-label-md transition-all">
+                <span class="material-symbols-outlined">logout</span> Sair
+            </a>
+        </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto">
+        <div class="h-20 flex items-center justify-between px-lg border-b border-white/5 bg-surface-container-low">
+            <h2 class="font-headline-md text-headline-md text-on-surface font-bold" id="admin-titulo">Dashboard</h2>
+            <div class="flex items-center gap-md">
+                <span class="text-on-surface-variant text-sm">Painel Administrativo</span>
+                <div class="w-8 h-8 rounded-full bg-primary-container/30 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-sm">admin_panel_settings</span>
+                </div>
+            </div>
+        </div>
+        <div class="p-lg">
+            <!-- Dashboard -->
+            <div id="section-dashboard" class="admin-section">
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-lg">Dashboard</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+                    <div class="glass-card rounded-xl p-lg">
+                        <div class="flex items-center gap-3 mb-md">
+                            <span class="material-symbols-outlined text-primary">inventory_2</span>
+                            <h4 class="text-on-surface-variant text-sm uppercase tracking-widest">Total Produtos</h4>
+                        </div>
+                        <p class="text-4xl font-bold text-on-surface" id="dash-total-produtos">...</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-lg">
+                        <div class="flex items-center gap-3 mb-md">
+                            <span class="material-symbols-outlined text-primary">category</span>
+                            <h4 class="text-on-surface-variant text-sm uppercase tracking-widest">Categorias</h4>
+                        </div>
+                        <p class="text-4xl font-bold text-on-surface" id="dash-total-categorias">...</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-lg">
+                        <div class="flex items-center gap-3 mb-md">
+                            <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                            <h4 class="text-on-surface-variant text-sm uppercase tracking-widest">Total Vendas</h4>
+                        </div>
+                        <p class="text-4xl font-bold text-on-surface" id="dash-total-vendas">...</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-lg">
+                        <div class="flex items-center gap-3 mb-md">
+                            <span class="material-symbols-outlined text-primary">warning</span>
+                            <h4 class="text-on-surface-variant text-sm uppercase tracking-widest">Estoque Baixo</h4>
+                        </div>
+                        <p class="text-4xl font-bold text-on-surface" id="dash-estoque-baixo">...</p>
+                    </div>
+                </div>
+                <div class="mt-lg glass-card rounded-xl p-lg">
+                    <h4 class="text-on-surface-variant text-sm uppercase tracking-widest mb-md">Receita Total</h4>
+                    <p class="text-5xl font-bold text-primary" id="dash-receita">...</p>
+                </div>
+            </div>
+            <!-- Categorias -->
+            <div id="section-categorias" class="admin-section hidden">
+                <div class="flex items-center justify-between mb-lg">
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Categorias</h3>
+                    <button class="bg-primary text-on-primary px-4 py-2 rounded-xl font-bold text-sm hover:scale-105 transition-all" onclick="abrirModalCategoria()">+ Nova</button>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-surface-container-high text-on-surface-variant text-sm uppercase tracking-widest">
+                            <tr><th class="p-4 font-label-md">ID</th><th class="p-4 font-label-md">Nome</th><th class="p-4 font-label-md">Cor</th><th class="p-4 font-label-md">Produtos</th><th class="p-4 font-label-md">Ações</th></tr>
+                        </thead>
+                        <tbody class="text-on-surface" id="tabela-categorias">
+                            <tr><td colspan="5" class="p-8 text-center text-on-surface-variant">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Estoque -->
+            <div id="section-estoque" class="admin-section hidden">
+                <div class="flex items-center justify-between mb-lg">
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Estoque</h3>
+                    <div class="flex items-center gap-md">
+                        <input id="busca-estoque" class="bg-surface-container border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-primary" placeholder="Buscar produto..." onkeyup="filtrarEstoque()"/>
+                        <button class="bg-primary text-on-primary px-4 py-2 rounded-xl font-bold text-sm hover:scale-105 transition-all" onclick="abrirModalProduto()">+ Novo</button>
+                    </div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-surface-container-high text-on-surface-variant text-sm uppercase tracking-widest">
+                            <tr><th class="p-4 font-label-md">ID</th><th class="p-4 font-label-md">Produto</th><th class="p-4 font-label-md">Categoria</th><th class="p-4 font-label-md">Qtd</th><th class="p-4 font-label-md">Custo</th><th class="p-4 font-label-md">Venda</th><th class="p-4 font-label-md">Destaque</th><th class="p-4 font-label-md">Ações</th></tr>
+                        </thead>
+                        <tbody class="text-on-surface" id="tabela-estoque">
+                            <tr><td colspan="8" class="p-8 text-center text-on-surface-variant">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Vendas -->
+            <div id="section-vendas" class="admin-section hidden">
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-lg">Vendas Realizadas</h3>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-surface-container-high text-on-surface-variant text-sm uppercase tracking-widest">
+                            <tr><th class="p-4 font-label-md">ID</th><th class="p-4 font-label-md">Cliente</th><th class="p-4 font-label-md">Data</th><th class="p-4 font-label-md">Itens</th><th class="p-4 font-label-md">Total</th><th class="p-4 font-label-md">Status</th></tr>
+                        </thead>
+                        <tbody class="text-on-surface" id="tabela-vendas">
+                            <tr><td colspan="6" class="p-8 text-center text-on-surface-variant">Carregando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<!-- Modal Overlay -->
+<div id="modal-overlay" class="fixed inset-0 modal-overlay z-50 flex items-center justify-center hidden" onclick="if(event.target===this)fecharModal()">
+    <div class="glass-card rounded-2xl p-xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-lg">
+            <h3 class="font-headline-md text-headline-md text-on-surface font-bold" id="modal-titulo">Novo</h3>
+            <button class="text-on-surface-variant hover:text-primary transition-all" onclick="fecharModal()"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div id="modal-corpo"></div>
+    </div>
+</div>
+<script src="JS/api.js"></script>
+<script src="JS/admin.js"></script>
+</body>
+</html>
