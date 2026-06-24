@@ -1,5 +1,6 @@
 using ConectaStore.API.Data;
 using ConectaStore.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -118,6 +119,7 @@ public class ProdutosController : ControllerBase
     }
 
     // DELETE api/produtos/1
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id}")]
     public ActionResult DeleteProduto(int id)
     {
@@ -143,6 +145,7 @@ public class ProdutosController : ControllerBase
         public string Foto { get; set; }
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet("admin")]
     public async Task<ActionResult> GetProdutosAdmin()
     {
@@ -159,6 +162,7 @@ public class ProdutosController : ControllerBase
         return Ok(result);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost("admin")]
     public async Task<ActionResult> PostProdutoAdmin([FromBody] ProdutoAdminRequest request)
     {
@@ -178,6 +182,7 @@ public class ProdutosController : ControllerBase
         return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("admin/{id}")]
     public async Task<ActionResult> PutProdutoAdmin(int id, [FromBody] ProdutoAdminRequest request)
     {

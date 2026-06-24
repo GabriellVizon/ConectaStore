@@ -160,18 +160,15 @@
 </div>
 <div class="hidden lg:flex items-center gap-8">
 <a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="index.html">Início</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="produto.html">Produtos</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="produto.html?filter=destaques">Ofertas</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="produto.html">Categorias</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="produtos.html">Produtos</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="produtos.html?filter=destaques">Ofertas</a>
 </div>
 <div class="flex items-center gap-6">
 <a href="carrinho.html" class="text-on-surface-variant hover:text-primary transition-all duration-300 active:scale-95 relative">
 <span class="material-symbols-outlined">shopping_cart</span>
 <span class="badge-carrinho absolute -top-2 -right-2 bg-error text-on-error text-[10px] font-bold w-5 h-5 rounded-full items-center justify-center" style="display:none">0</span>
 </a>
-<button class="text-on-surface-variant hover:text-primary transition-all duration-300 active:scale-95">
-<span class="material-symbols-outlined">account_circle</span>
-</button>
+<div id="auth-nav"></div>
 <a href="admin.html" class="hidden md:flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors font-label-md text-label-md border border-white/10">
 <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
                     Admin
@@ -182,6 +179,7 @@
 </div>
 </div>
 </nav>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
 <!-- Hero Section -->
 <section class="relative min-h-[90vh] flex items-center pt-20">
 <div class="absolute inset-0 z-0">
@@ -201,7 +199,7 @@
                     A maior plataforma tecnológica voltada exclusivamente para o sucesso do cooperado. Eficiência, transparência e alta performance em cada bit.
                 </p>
 <div class="flex flex-wrap gap-4 pt-4">
-<a href="produto.html" class="btn-primary px-8 py-4 rounded-xl font-label-md text-label-md text-on-primary font-bold flex items-center gap-2 no-underline">
+<a href="produtos.html" class="btn-primary px-8 py-4 rounded-xl font-label-md text-label-md text-on-primary font-bold flex items-center gap-2 no-underline">
                         Explorar Produtos
                         <span class="material-symbols-outlined">trending_flat</span>
 </a>
@@ -276,7 +274,7 @@
 <h2 class="font-headline-lg text-headline-lg text-on-surface">Explorar Categorias</h2>
 <p class="font-body-md text-body-md text-on-surface-variant">Encontre o que você precisa por setor tecnológico</p>
 </div>
-<a href="produto.html" class="text-primary font-label-md text-label-md flex items-center gap-2 hover:underline no-underline">
+<a href="produtos.html" class="text-primary font-label-md text-label-md flex items-center gap-2 hover:underline no-underline">
                     Ver todas <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </a>
 </div>
@@ -320,10 +318,9 @@
 <div>
 <h4 class="text-on-surface font-bold mb-6">Plataforma</h4>
 <ul class="space-y-4">
-<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produto.html?filter=destaques">Produtos em Destaque</a></li>
-<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produto.html">Categorias</a></li>
-<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produto.html">Soluções</a></li>
-<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produto.html">Portal do Fornecedor</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produtos.html?filter=destaques">Produtos em Destaque</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produtos.html">Soluções</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all" href="produtos.html">Portal do Fornecedor</a></li>
 </ul>
 </div>
 <div>
@@ -352,6 +349,7 @@
 </div>
 </footer>
 <script src="JS/api.js"></script>
+<script src="JS/auth.js"></script>
 <script src="JS/carrinho.js"></script>
 <script src="JS/home.js"></script>
 <script>

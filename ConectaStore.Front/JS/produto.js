@@ -63,7 +63,7 @@ async function carregarProduto() {
                     </div>
                 </div>
             </div>
-            <a href="produto.html" class="flex items-center text-on-surface-variant hover:text-primary transition-all group">
+            <a href="produtos.html" class="flex items-center text-on-surface-variant hover:text-primary transition-all group">
                 <span class="material-symbols-outlined mr-2 group-hover:-translate-x-1 transition-transform">arrow_back</span>
                 <span class="font-label-md text-label-md uppercase tracking-widest">Voltar ao Catálogo</span>
             </a>

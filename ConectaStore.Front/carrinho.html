@@ -109,8 +109,8 @@
 <a href="index.html" class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">Loja do Cooperado</a>
 <div class="hidden md:flex items-center space-x-lg font-body-md text-body-md">
 <a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html">Início</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="produto.html">Produtos</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="produto.html?filter=destaques">Ofertas</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="produtos.html">Produtos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="produtos.html?filter=destaques">Ofertas</a>
 <a class="text-primary font-bold border-b-2 border-primary pb-1" href="carrinho.html">Carrinho</a>
 </div>
 <div class="flex items-center space-x-md">
@@ -118,6 +118,7 @@
 shopping_cart
 <span class="badge-carrinho absolute -top-2 -right-2 bg-error text-on-error text-[10px] font-bold w-5 h-5 rounded-full items-center justify-center" style="display:none">0</span>
 </a>
+<div id="auth-nav"></div>
 <a href="admin.html" class="px-md py-xs bg-primary-container text-on-primary font-bold rounded-lg hover:scale-105 transition-transform active:scale-95">Admin</a>
 </div>
 </div>
@@ -139,8 +140,8 @@ shopping_cart
 <div class="space-y-sm">
 <h4 class="text-on-surface font-bold uppercase tracking-widest text-xs">Menu</h4>
 <ul class="space-y-xs text-on-surface-variant font-body-md">
-<li><a class="hover:text-primary transition-all" href="produto.html">Produtos</a></li>
-<li><a class="hover:text-primary transition-all" href="produto.html?filter=destaques">Ofertas</a></li>
+<li><a class="hover:text-primary transition-all" href="produtos.html">Produtos</a></li>
+<li><a class="hover:text-primary transition-all" href="produtos.html?filter=destaques">Ofertas</a></li>
 <li><a class="hover:text-primary transition-all" href="index.html">Início</a></li>
 </ul>
 </div>
@@ -159,6 +160,7 @@ shopping_cart
 </div>
 </footer>
 <script src="JS/api.js"></script>
+<script src="JS/auth.js"></script>
 <script src="JS/carrinho.js"></script>
 <script>
 function renderizarCarrinho() {
@@ -171,7 +173,7 @@ function renderizarCarrinho() {
                 <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-md">shopping_cart</span>
                 <h2 class="text-headline-md text-on-surface mb-sm">Carrinho vazio</h2>
                 <p class="text-on-surface-variant mb-lg">Nenhum produto adicionado ainda.</p>
-                <a href="produto.html" class="inline-block bg-primary text-on-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform">Explorar Produtos</a>
+                <a href="produtos.html" class="inline-block bg-primary text-on-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform">Explorar Produtos</a>
             </div>
         `;
         resumo.innerHTML = "";
@@ -270,7 +272,7 @@ async function finalizarCompra() {
                 <span class="material-symbols-outlined text-6xl text-green-400 mb-md">check_circle</span>
                 <h2 class="text-headline-md text-on-surface mb-sm">Compra Finalizada!</h2>
                 <p class="text-on-surface-variant mb-lg">Obrigado, ${cliente}! Seu pedido foi registrado com sucesso.</p>
-                <a href="produto.html" class="inline-block bg-primary text-on-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform">Continuar Comprando</a>
+                <a href="produtos.html" class="inline-block bg-primary text-on-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform">Continuar Comprando</a>
             </div>
         `;
     } catch {

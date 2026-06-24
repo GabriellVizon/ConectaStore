@@ -1,5 +1,6 @@
 using ConectaStore.API.Data;
 using ConectaStore.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +36,7 @@ public class CategoriasController : ControllerBase, ICategoriasController
         return Ok(categoria);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult<Categoria> PostCategoria([FromBody] Categoria categoria)
     {
@@ -46,6 +48,7 @@ public class CategoriasController : ControllerBase, ICategoriasController
         return CreatedAtAction("GetCategoria", new { id = categoria.Id }, categoria);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public ActionResult PutCategoria(int id, [FromBody] Categoria categoria)
     {
@@ -66,6 +69,7 @@ public class CategoriasController : ControllerBase, ICategoriasController
         _context.SaveChanges();
         return NoContent();
     }
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
 
         public ActionResult DeleteCategoria(int id)

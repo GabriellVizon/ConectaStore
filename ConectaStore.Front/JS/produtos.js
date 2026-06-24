@@ -98,7 +98,7 @@ function renderizarProdutos(produtos) {
                         <button class="bg-primary/10 hover:bg-primary text-primary hover:text-on-primary p-2.5 rounded-xl transition-all active:scale-95 add-cart-btn" data-pid="${p.id}">
                             <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
                         </button>
-                        <a href="produtos.html?id=${p.id}" class="bg-surface-container-high hover:bg-white/10 text-on-surface-variant hover:text-primary p-2.5 rounded-xl transition-all active:scale-95">
+                        <a href="produto.html?id=${p.id}" class="bg-surface-container-high hover:bg-white/10 text-on-surface-variant hover:text-primary p-2.5 rounded-xl transition-all active:scale-95">
                             <span class="material-symbols-outlined text-lg">chevron_right</span>
                         </a>
                     </div>

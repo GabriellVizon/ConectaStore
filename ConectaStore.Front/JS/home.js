@@ -9,7 +9,7 @@ async function carregarCategorias() {
     container.innerHTML = "";
     categorias.forEach(cat => {
         container.innerHTML += `
-        <a href="produto.html" class="block relative h-64 rounded-xl overflow-hidden group cursor-pointer border border-white/5" style="background: ${cat.cor || '#171f33'}">
+        <a href="produtos.html" class="block relative h-64 rounded-xl overflow-hidden group cursor-pointer border border-white/5" style="background: ${cat.cor || '#171f33'}">
             <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
             <div class="absolute inset-0 flex items-center justify-center">
                 <span class="material-symbols-outlined text-6xl opacity-20" style="color: ${cat.cor || '#38bdf8'}">category</span>
@@ -58,7 +58,7 @@ async function carregarDestaques() {
                         <span class="text-on-surface-variant text-sm block">A partir de</span>
                         <span class="text-primary font-bold text-2xl">R$ ${Number(p.valorVenda).toFixed(2).replace('.', ',')}</span>
                     </div>
-                    <a href="produtos.html?id=${p.id}" class="bg-primary/10 hover:bg-primary text-primary hover:text-on-primary p-3 rounded-xl transition-all">
+                    <a href="produto.html?id=${p.id}" class="bg-primary/10 hover:bg-primary text-primary hover:text-on-primary p-3 rounded-xl transition-all">
                         <span class="material-symbols-outlined">chevron_right</span>
                     </a>
                 </div>

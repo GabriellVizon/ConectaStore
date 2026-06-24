@@ -1,5 +1,12 @@
 const API = "http://localhost:5278/api";
 
+function authHeaders() {
+    const token = localStorage.getItem("conecta_token");
+    const headers = { "Content-Type": "application/json" };
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+    return headers;
+}
+
 async function getCategorias() {
     const response = await fetch(`${API}/categorias`);
     return await response.json();

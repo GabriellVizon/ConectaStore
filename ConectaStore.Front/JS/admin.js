@@ -1,3 +1,15 @@
+if (!localStorage.getItem("conecta_token")) {
+    window.location.href = "login.html";
+}
+try {
+    const user = JSON.parse(localStorage.getItem("conecta_user"));
+    if (!user || !user.isAdmin) {
+        window.location.href = "login.html";
+    }
+} catch {
+    window.location.href = "login.html";
+}
+
 let _categorias = [];
 let _produtos = [];
 let _vendas = [];
@@ -30,7 +42,7 @@ function abrirSecao(secao) {
 async function carregarDashboard() {
     try {
         const [resP, resC, resV] = await Promise.all([
-            fetch(`${API}/produtos/admin`),
+            fetch(`${API}/produtos/admin`, { headers: authHeaders() }),
             fetch(`${API}/categorias`),
             fetch(`${API}/vendas`)
         ]);
@@ -60,7 +72,7 @@ async function carregarCategorias() {
             tbody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-on-surface-variant">Nenhuma categoria cadastrada.</td></tr>';
             return;
         }
-        const prods = _produtos.length ? _produtos : await (await fetch(`${API}/produtos/admin`)).json();
+        const prods = _produtos.length ? _produtos : await (await fetch(`${API}/produtos/admin`, { headers: authHeaders() })).json();
         tbody.innerHTML = _categorias.map(c => {
             const count = prods.filter(p => p.categoriaId === c.id).length;
             return `<tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
@@ -110,12 +122,12 @@ async function salvarCategoria() {
     try {
         if (_editandoCategoriaId) {
             await fetch(`${API}/categorias/${_editandoCategoriaId}`, {
-                method: "PUT", headers: { "Content-Type": "application/json" },
+                method: "PUT", headers: authHeaders(),
                 body: JSON.stringify({ id: _editandoCategoriaId, nome, cor })
             });
         } else {
             await fetch(`${API}/categorias`, {
-                method: "POST", headers: { "Content-Type": "application/json" },
+                method: "POST", headers: authHeaders(),
                 body: JSON.stringify({ nome, cor })
             });
         }
@@ -128,7 +140,7 @@ async function salvarCategoria() {
 async function excluirCategoria(id) {
     if (!confirm("Excluir esta categoria?")) return;
     try {
-        const res = await fetch(`${API}/categorias/${id}`, { method: "DELETE" });
+        const res = await fetch(`${API}/categorias/${id}`, { method: "DELETE", headers: authHeaders() });
         if (!res.ok) {
             const msg = await res.text();
             alert(msg || "Não é possível excluir: categoria possui produtos vinculados.");
@@ -143,7 +155,7 @@ async function excluirCategoria(id) {
 async function carregarEstoque() {
     const tbody = document.getElementById("tabela-estoque");
     try {
-        const res = await fetch(`${API}/produtos/admin`);
+        const res = await fetch(`${API}/produtos/admin`, { headers: authHeaders() });
         _produtos = await res.json();
         if (!_produtos.length) {
             tbody.innerHTML = '<tr><td colspan="8" class="p-8 text-center text-on-surface-variant">Nenhum produto cadastrado.</td></tr>';
@@ -246,9 +258,9 @@ async function salvarProduto() {
     const body = JSON.stringify({ nome, categoriaId, qtde, valorCusto, valorVenda, descricao, foto, destaque });
     try {
         if (_editandoProdutoId) {
-            await fetch(`${API}/produtos/admin/${_editandoProdutoId}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body });
+            await fetch(`${API}/produtos/admin/${_editandoProdutoId}`, { method: "PUT", headers: authHeaders(), body });
         } else {
-            await fetch(`${API}/produtos/admin`, { method: "POST", headers: { "Content-Type": "application/json" }, body });
+            await fetch(`${API}/produtos/admin`, { method: "POST", headers: authHeaders(), body });
         }
         fecharModal();
         carregarEstoque();
@@ -259,7 +271,7 @@ async function salvarProduto() {
 async function excluirProduto(id) {
     if (!confirm("Excluir este produto permanentemente?")) return;
     try {
-        await fetch(`${API}/produtos/${id}`, { method: "DELETE" });
+        await fetch(`${API}/produtos/${id}`, { method: "DELETE", headers: authHeaders() });
         carregarEstoque();
         carregarDashboard();
     } catch { alert("Erro ao excluir."); }
